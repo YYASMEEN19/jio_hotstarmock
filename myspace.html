@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disney+ Jio Star Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #121212;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    /* --- Sidebar --- */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 60px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      overflow-x: hidden;
+      transition: width 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 1rem;
+      z-index: 1000;
+    }
+    .sidebar:hover {
+      width: 200px;
+      align-items: flex-start;
+      padding-left: 1rem;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(12px);
+    }
+    .sidebar .logo {
+      color: #14b8ff;
+      font-size: 1.5rem;
+      padding: 1rem;
+    }
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .sidebar a:hover {
+      background-color: #1e1e1e;
+      border-radius: 5px;
+    }
+    .icon {
+      font-size: 1.2rem;
+      min-width: 40px;
+      text-align: center;
+    }
+    .label {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+    }
+    .sidebar:hover .label {
+      opacity: 1;
+    }
+        /* --- Footer --- */
+    
+    /* Sidebar */
+.sidebar {
+  width: 70px;
+  background: #000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+/* Subscribe Button */
+/* Compact Subscribe Button */
+.Subscribe {
+  display: inline-block;
+  overflow: visible;   /* allows scaled text to be visible */
+  line-height: normal; /* avoids cutting */
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.subscribe-btn {
+  background: linear-gradient(90deg, #a38a4b, #d7c27a);
+  color: white;
+  font-size: 6px;         /* browsers usually won’t go below ~8px */
+  font-weight: bold;
+  padding: 2px 6px;       /* reduce padding */
+  border-radius: 8px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  display: inline-block;
+  white-space: nowrap;
+  min-width: 40px;
+  text-align: center;
+  }
+
+.subscribe-btn::after {
+  content: " >";
+  font-weight: bold;
+  font-size: 10px; /* arrow size matches text */
+}
+
+.subscribe-btn:hover {
+  background: linear-gradient(90deg, #d7c27a, #a38a4b);
+}
+
+/* Sidebar icons */
+.sidebar a {
+  color: #ccc;
+  font-size: 20px;
+  margin: 15px 0;
+  text-align: center;
+}
+.sidebar a:hover {
+  color: white;
+}
+/* Logo + Subscribe wrapper */
+/* Sidebar container */
+/* Sidebar stays the same */
+.logo-subscribe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Star Logo */
+.star-logo {
+  height: 32px;
+  margin-bottom: 4px;
+}
+
+/* Subscribe Button – move to right side */
+.subscribe-btn {
+  position: absolute;    /* detach from sidebar */
+  top: 20px;             /* distance from top */
+  right: 20px;           /* stick to right edge */
+  background: linear-gradient(90deg, #c5a852, #d8c174);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.4;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.subscribe-btn::after {
+  content: " ›";
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.subscribe-btn:hover {
+  background: linear-gradient(90deg, #d7c27a, #a38a4b);
+}
+
+    .icon {
+      font-size: 1.2rem;
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .label {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .sidebar:hover .label {
+      opacity: 1;
+    }
+
+    /* My Space Dropdown */
+    .myspace {
+      position: relative;
+      width: 100%;
+    }
+
+    .myspace > a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      padding: 0.5rem 0;
+      text-decoration: none;
+    }
+
+    .myspace .dropdown {
+      display: none;
+      flex-direction: column;
+      background-color: #1e1e1e;
+      border-radius: 5px;
+      margin-left: 2rem;
+      margin-top: 0.3rem;
+      padding: 0.5rem 0;
+      position: absolute;
+      left: 40px;
+      top: 100%;
+      min-width: 140px;
+      z-index: 2000;
+    }
+
+    .myspace .dropdown a {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .myspace .dropdown a:hover {
+      background-color: #2a2a2a;
+      color: #14b8ff;
+    }
+
+    .myspace:hover .dropdown {
+      display: flex;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 200px;
+      padding: 2rem;
+      transition: margin-left 0.3s;
+      min-height: calc(100vh - 100px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sidebar:hover ~ .main-content {
+      margin-left: 200px;
+    }
+
+    /* Login Form */
+    .login-container {
+      background-color: #121212;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(20, 184, 255, 0.3);
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #14b8ff;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #1e1e1e;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: 2px solid #14b8ff;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #14b8ff;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-btn:hover {
+      background-color: #0ea5e9;
+    }
+
+    .login-footer {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .login-footer a {
+      color: #14b8ff;
+      text-decoration: none;
+    }
+
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer 
+    .footer {
+      background-color: #121212;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      color: #999;
+      text-align: left;
+    }
+
+    .footer h2 {
+      color: whitesmoke;
+      font-size: small;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .footer a {
+      color: #999;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #14b8ff;
+    }
+
+    .footer .social i {
+      margin-right: 10px;
+      color: #999;
+      font-size: 1.2rem;
+    }
+
+    .footer .social i:hover {
+      color: #14b8ff;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+    }*/
+
+    hr {
+      margin: 1rem 0;
+      border-color: #333;
+    }
+  </style>
+</head>
+<body>
+<header>
+    <div class="sidebar">
+  <div class="logo-subscribe">
+    <img src="images/STAR.png" 
+         alt="Star" class="star-logo">
+   </div>
+     
+      <nav>
+        <a href="jio.html"><span class="icon">🏠</span><span class="label">Home</span></a>
+        <a href="search.html"><span class="icon">🔍</span><span class="label">Search</span></a>
+        <a href="tv.html"><span class="icon">💻</span><span class="label">TV</span></a>
+        <a href="movies.html"><span class="icon">🍿</span><span class="label">Movies</span></a>
+        <a href="sports.html"><span class="icon">🏃</span><span class="label">Sports</span></a>
+        <a href="sparks.html"><span class="icon">🎥</span><span class="label">Sparks</span></a>
+        <a href="categories.html"><span class="icon">📂</span><span class="label">Categories</span></a>
+        <a href="myspace.html"><span class="icon">👤</span><span class="label">My Space</span></a>
+      </nav>
+          </div>
+          <a href="Subscribe.html" class="subscribe-btn">Subscribe</a>
+  </header>
+
+  <!-- Login Form -->
+  <div class="main-content">
+    <div class="login-container">
+      <h2>Login to My Space</h2>
+      <form>
+        <label for="email">Email or Mobile</label>
+        <input type="text" id="email" placeholder="Enter email or mobile" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required />
+
+        <button type="submit" class="login-btn">Continue</button>
+      </form>
+
+      <div class="login-footer">
+        <p>New here? <a href="#">Create an account</a></p>
+        <p><a href="#">Forgot Password?</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer 
+  <div class="footer">
+    <div class="footer-links">
+      <div>
+        <h2>Company</h2><br>
+        <a href="#">About Us</a><br><br>
+        <a href="#">Careers</a>
+      </div>
+      <div>
+        <h2>View Website in</h2><br>
+        <a href="#">✔️ ENGLISH</a>
+      </div>
+      <div>
+        <h2>Need Help?</h2><br>
+        <a href="#">Help Center</a><br><br>
+        <a href="#">Share Feedback</a>
+      </div>
+      <div>
+        <h2>Connect with Us</h2>
+        <a href="https://facebook.com" class="social" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" class="social" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com" class="social" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://youtube.com" class="social" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <hr>
+    <p>© 2025 Disney+ Jio Star Mockup. Created for educational purposes.</p>
+    <p>
+      <a href="#">Terms of use</a>&nbsp;&nbsp;&nbsp;
+      <a href="#">Privacy Policy</a>&nbsp;&nbsp;&nbsp;
+      <a href="#">FAQ</a>
+    </p>
+  </div>-->
+</body>
+</html>

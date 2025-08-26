@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disney+ Jio Star Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #121212;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    /* --- Sidebar --- */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 60px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      overflow-x: hidden;
+      transition: width 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 1rem;
+      z-index: 1000;
+    }
+    .sidebar:hover {
+      width: 200px;
+      align-items: flex-start;
+      padding-left: 1rem;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(12px);
+    }
+    .sidebar .logo {
+      color: #14b8ff;
+      font-size: 1.5rem;
+      padding: 1rem;
+    }
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .sidebar a:hover {
+      background-color: #1e1e1e;
+      border-radius: 5px;
+    }
+    .icon {
+      font-size: 1.2rem;
+      min-width: 40px;
+      text-align: center;
+    }
+    .label {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+    }
+    .sidebar:hover .label {
+      opacity: 1;
+    }
+    .main-content {
+      margin-left: 80px;
+      padding: 20px;
+    }
+
+    /* --- Banner Bigg Boss --- */
+    
+    .banner-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 400px; /* adjust height */
+}
+
+.banner {
+  display: none; 
+  width: 100%;
+  height: 100%;
+  transition: opacity 1s ease-in-out;
+}
+
+.banner.active {
+  display: block;
+}
+.banner {
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+    .banner-container {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .banner-image img {
+      width: 900px;
+      border-radius: 5px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    .banner-info {
+      max-width: 500px;
+    }
+    .banner-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .banner-info p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+    .trailer-btn {
+      background: #14b8ff;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+    .trailer-btn:hover {
+      background: #0f90c7;
+    }
+
+    /* --- Trailer Modal --- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: #000;
+      padding: 1rem;
+      border-radius: 10px;
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+    }
+    .modal video {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+.trailer-row {
+  margin: 2rem 0;
+}
+
+.trailer-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding-bottom: 10px;
+}
+
+.trailer-item {
+  min-width: 240px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.trailer-item iframe {
+  width: 100%;
+  height: 135px;
+  border: none;
+}
+
+    /* --- Sections --- */
+.section {
+  padding: 2rem 0;
+  padding-left: 80px; /* ✅ push content away from sidebar */
+}
+
+    .section h2 {
+  margin-bottom: 1rem;
+  border-left: 5px solid #14b8ff;
+  padding-left: 10px;
+  font-size: 1.5rem;
+}
+  .movie-card {
+  min-width: 180px;  /* important for horizontal scroll */
+  height: 270px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;    /* prevent shrinking */
+}
+
+.movie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Overlay buttons */
+.overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding-bottom: 10px;
+}
+
+.movie-card:hover .overlay {
+  opacity: 1;
+}
+
+.overlay button {
+  margin: 5px 0;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  background: rgba(255,255,255,0.9);
+  transition: 0.3s;
+}
+
+.overlay button:hover {
+  background: #ff0000;
+  color: #fff;
+}
+
+/* Carousel arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+
+.arrow:hover {
+  background: rgba(20,184,255,0.8);
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+    .card {
+      background-color: #1c1c1c;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(20, 184, 255, 0.4);
+    }
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    /* --- Footer --- */
+    .footer {
+      text-align: left;
+      padding: 1rem;
+      background-color: #121212;
+      font-size: 0.9rem;
+      color: #999;
+    }
+    .footer h2 {
+      font-family: 'Times New Roman', Times, serif;
+      color: whitesmoke;
+      font-size: small;
+    }
+    .footer a:hover {
+      color: #14b8ff;
+    }
+    /* Sidebar */
+.sidebar {
+  width: 70px;
+  background: #000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+/* Wrapper */
+.Subscribe {
+  display: inline-block;
+  padding: 5px;              /* small breathing space */
+  margin-top: 0;
+  margin-bottom: 15px;
+  overflow: visible;          /* never clip */
+}
+
+/* Button */
+.subscribe-btn {
+  display: inline-flex;       /* centers text properly */
+  align-items: center;        /* vertical centering */
+  justify-content: center;    /* horizontal centering */
+  background: linear-gradient(90deg, #c5a852, #d8c174);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 20px;          /* more horizontal breathing */
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.5;           /* ensures full text height */
+  text-decoration: none;
+  overflow: visible;
+  min-height: 32px;           /* prevents cutting top/bottom */
+}
+
+.subscribe-btn::after {
+  content: " >";
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.subscribe-btn:hover {
+  background: linear-gradient(90deg, #d7c27a, #a38a4b);
+}
+
+/* Sidebar icons */
+.sidebar a {
+  color: #ccc;
+  font-size: 20px;
+  margin: 15px 0;
+  text-align: center;
+}
+.sidebar a:hover {
+  color: white;
+}
+
+   .carousel-container {
+  position: relative;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.carousel {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-left: 20px; /* ✅ avoids cutting first card */
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-card, .trailer-item, .studios-card {
+  flex: 0 0 auto;
+  min-width: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.movie-card img, .trailer-item iframe, .studios-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+    .trailer-item {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.trailer-item iframe {
+  width: 100%;
+  height: 250px; /* adjust as needed */
+  border-radius: 12px;
+}
+
+.trailer-actions {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.trailer-actions button {
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.trailer-actions button:hover {
+  background: #ff3d00; /* red hover like Hotstar */
+}      .languages-section {
+  padding: 2rem 0;
+  padding-left: 80px; /* ✅ push content away from sidebar */
+}
+
+.languages-section h2 {
+  margin-bottom: 1rem;
+  border-left: 5px solid #14b8ff;
+  padding-left: 10px;
+  font-size: 1.5rem;
+}
+
+.languages-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.language-card {
+  position: relative;
+  width: 180px;
+  height: 270px;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.language-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(20, 184, 255, 0.4);
+}
+
+.language-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.language-text {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background: rgba(0,0,0,0.5); /* semi-transparent overlay */
+  padding: 5px 0;
+  font-weight: bold;
+}
+
+.language-text .local {
+  display: block;
+  font-size: 1rem;
+}
+
+.language-text .english {
+  display: block;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+.studios-section {
+  padding: 2rem 0;
+  padding-left: 80px; /* ✅ push content away from sidebar */
+}
+
+.studios-section h2 {
+    margin-bottom: 1rem;
+  border-left: 5px solid #14b8ff;
+  padding-left: 10px;
+  font-size: 1.5rem;
+
+}
+
+.studios-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.studios-card {
+  width: 200px;
+  height: 112.5px; /* 200 × 9 / 16 */
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.studios-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(20, 184, 255, 0.4);
+}
+
+.studios-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* ensures full video visible */
+  display: block;
+  background: #000;     /* black bars fill background */
+}
+/* Sidebar */
+.sidebar {
+  overflow: visible; /* ensure nothing gets cut */
+}
+
+/* Logo + Subscribe wrapper */
+/* Sidebar container */
+/* Sidebar stays the same */
+.logo-subscribe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Star Logo */
+.star-logo {
+  height: 32px;
+  margin-bottom: 4px;
+}
+
+/* Subscribe Button – move to right side */
+.subscribe-btn {
+  position: absolute;    /* detach from sidebar */
+  top: 20px;             /* distance from top */
+  right: 20px;           /* stick to right edge */
+  background: linear-gradient(90deg, #c5a852, #d8c174);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.4;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.subscribe-btn::after {
+  content: " ›";
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.subscribe-btn:hover {
+  background: linear-gradient(90deg, #d7c27a, #a38a4b);
+}
+
+</style>
+</head>
+<body>
+  <header>
+    <div class="sidebar">
+  <div class="logo-subscribe">
+    <img src="images/STAR.png" 
+         alt="Star" class="star-logo">
+   </div>
+     
+      <nav>
+        <a href="home.html"><span class="icon">🏠</span><span class="label">Home</span></a>
+        <a href="search.html"><span class="icon">🔍</span><span class="label">Search</span></a>
+        <a href="tv.html"><span class="icon">💻</span><span class="label">TV</span></a>
+        <a href="movies.html"><span class="icon">🍿</span><span class="label">Movies</span></a>
+        <a href="sports.html"><span class="icon">🏃</span><span class="label">Sports</span></a>
+        <a href="sparks.html"><span class="icon">🎥</span><span class="label">Sparks</span></a>
+        <a href="categories.html"><span class="icon">📂</span><span class="label">Categories</span></a>
+        <a href="myspace.html"><span class="icon">👤</span><span class="label">My Space</span></a>
+      </nav>
+          </div>
+          <a href="Subscribe.html" class="subscribe-btn">Subscribe</a>
+  </header>
+<div class="main-content">
+  <!-- Banner Section -->
+  <div class="banner-slider">
+
+    <!-- Banner 1: Bigg Boss -->
+    <div class="banner active">
+      <div class="banner-container">
+        <div class="banner-image">
+           <video width="800" height="400" autoplay muted loop>
+        <source src="videos/bb19.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+        </div>
+        <div class="banner-info">
+          <h3>
+            <img src="images/JIOLOGO.png" alt="JioHotstar" style="height:25px; vertical-align:middle;">
+            Bigg Boss S19
+          </h3>
+          <p><span style="color:#14b8ff;">Streaming From August 24</span></p>
+          <p>Gharwalon ki sarkaar takes charge in the wildest Bigg Boss yet</p>
+          <button class="trailer-btn" onclick="openModal()">WATCH NOW</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner 2: Cook With Komali 5 -->
+    <div class="banner">
+      <div class="banner-container">
+        <div class="banner-image">
+                <video width="800" height="400" autoplay muted loop>
+        <source src="videos/cwc5.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+          <img src="images/cwk5.jpg" alt="Cook With Komali 5">
+        </div>
+        <div class="banner-info">
+          <h3>
+            <img src="images/JIOLOGO.png" alt="JioHotstar" style="height:25px; vertical-align:middle;">
+            Cook With Komali 5
+          </h3>
+          <p><span style="color:#14b8ff;">Streaming Now</span></p>
+          <p>The most fun-filled cooking show with ultimate laughter.</p>
+          <button class="trailer-btn">WATCH NOW</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner 3: Movie -->
+    <div class="banner">
+      <div class="banner-container">
+        <div class="banner-image">
+           <video width="800" height="400" autoplay muted loop>
+        <source src="videos/jawan.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+        </div>
+        <div class="banner-info">
+          <h3>
+            <img src="images/JIOLOGO.png" alt="JioHotstar" style="height:25px; vertical-align:middle;">
+            Jawan
+          </h3>
+          <p><span style="color:#14b8ff;">Now Streaming</span></p>
+          <p>SRK in his action-packed blockbuster.</p>
+          <button class="trailer-btn">WATCH NOW</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner 4: Series -->
+    <div class="banner">
+      <div class="banner-container">
+        <div class="banner-image">
+           <video width="800" height="400" autoplay muted loop>
+        <source src="images/ipl.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+        </div>
+        <div class="banner-info">
+          <h3>
+            <img src="images/JIOLOGO.png" alt="JioHotstar" style="height:25px; vertical-align:middle;">
+IPL 2025 @JIO HOTSTAR          </h3>
+          <p><span style="color:#14b8ff;">Watch Now</span></p>
+          <p>IPL 2025 PROMO</p>
+          <button class="trailer-btn">WATCH NOW</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+ <div class="section">
+  <h2>Trending Now</h2>
+  <div class="carousel-container">
+    <button class="arrow left">&#8249;</button>
+    <div class="carousel grid">
+      <div class="movie-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/12/Jumanji_-The_Next_Level_film_poster.jpg" alt="Trending 1">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://c8.alamy.com/comp/2JH2MD0/musafascartimonpumbaarafikisimbaedshenzibanzai-the-lion-king-1994-2JH2MD0.jpg" alt="Trending 2">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/43/Avatar_Fire_and_Ash_first_poster.jpeg/250px-Avatar_Fire_and_Ash_first_poster.jpeg" alt="Trending 3">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://m.media-amazon.com/images/M/MV5BMmViYjExY2UtMzZjOS00OGQ2LWEzNWYtNGYxY2NkY2RmMDE3XkEyXkFqcGc@._V1_.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="images/slider 2.png" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="images/slider 5.png" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/3/39/Jawan_film_poster.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/B2aUYFC0qUAkNnjbTHRyhrg3.png" alt="Trending 5">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+    </div>
+    <button class="arrow right">&#8250;</button>
+  </div>
+</div>   <!-- Sections -->
+
+    <div class="section">
+  <h2>Action Movies</h2>
+  <div class="carousel-container">
+    <button class="arrow left">&#8249;</button>
+    <div class="carousel grid">
+      <div class="movie-card">
+        <img src="https://www.adgully.com/img/800/202408/untitled-2024-08-30t110556-609.png.jpg" alt="Trending 1">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://th-i.thgim.com/public/entertainment/movies/hg5vm/article67115537.ece/alternates/FREE_1200/Commando%20Image%202%201.jpeg" alt="Trending 2">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2023/03/the-covenant-poster.jpg" alt="Trending 3">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://m.media-amazon.com/images/M/MV5BMmViYjExY2UtMzZjOS00OGQ2LWEzNWYtNGYxY2NkY2RmMDE3XkEyXkFqcGc@._V1_.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://www.koimoi.com/wp-content/new-galleries/2023/02/its-time-to-unleash-the-power-of-wakanda-on-disney-hotstar-here-are-five-reasons-to-watch-black-panther-wakanda-forever-01.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://m.media-amazon.com/images/M/MV5BZTMyZTA0ZTItYjY3Yi00ODNjLWExYTgtYzgxZTk0NTg0Y2FlXkEyXkFqcGc@._V1_.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://m.media-amazon.com/images/M/MV5BYWJiZDg3ZWEtYWZkMC00Zjc1LTkzYTctZWFkODk2MDlmOGNiXkEyXkFqcGc@._V1_.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://www.koimoi.com/wp-content/new-galleries/2021/07/celebrate-50-years-of-vijay-diwas-with-the-much-awaited-war-action-movie-bhuj-the-pride-of-india-starring-ajay-devgn-releasing-13th-august-only-on-disney-hotstar-vip-001.jpg" alt="Trending 5">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+    </div>
+    <button class="arrow right">&#8250;</button>
+  </div>
+</div>
+    <div class="section">
+  <h2>Non-Stop Sports</h2>
+  <div class="carousel-container">
+    <button class="arrow left">&#8249;</button>
+    <div class="carousel grid">
+      <div class="movie-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/18/2025_IPL_logo.png" alt="Trending 1">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://aapanipadhai.com/wp-content/uploads/2023/12/Pro-Kabaddi-League-2023.png" alt="Trending 2">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://images.news18.com/ibnlive/uploads/2022/10/sports-92-16658915083x2.png" alt="Trending 3">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://i.ytimg.com/vi/bentksdpKzc/maxresdefault.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://i.ytimg.com/vi/5bhwB2TwtvA/maxresdefault.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2023/04/highlights-1681213177.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://media.ibc24.in/wp-content/uploads/2024/05/RCB-vs-RR-Highlights.png" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://media.ibc24.in/wp-content/uploads/2024/05/RCB-vs-RR-Highlights.png" alt="Trending 5">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+    </div>
+    <button class="arrow right">&#8250;</button>
+  </div>
+</div>
+    <div class="section">
+  <h2>Kids' Croner</h2>
+  <div class="carousel-container">
+    <button class="arrow left">&#8249;</button>
+    <div class="carousel grid">
+      <div class="movie-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/12/Jumanji_-The_Next_Level_film_poster.jpg" alt="Trending 1">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://c8.alamy.com/comp/2JH2MD0/musafascartimonpumbaarafikisimbaedshenzibanzai-the-lion-king-1994-2JH2MD0.jpg" alt="Trending 2">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRniCZnPwoYD_ARlVGn95cJsHFHBYqGxh2tBg&shttps://assets.gqindia.com/photos/67c02e580293133b6067c3e1/master/w_1600%2Cc_limit/Toy-Story-4.jpg" alt="Trending 3">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://flxt.tmsimg.com/assets/p11993845_p_v13_aq.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://schoolholidays.com.au/images/blog/tangled-(2010).jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://www.gamespot.com/a/uploads/scale_medium/1562/15626911/4033496-1.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://i.pinimg.com/236x/b4/f0/3c/b4f03c0c13143a71a43c04f9843a99e7.jpg" alt="Trending 4">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+      <div class="movie-card">
+        <img src="https://i.pinimg.com/236x/af/9d/64/af9d64f5e84ed6609d6f39fb67c49c9e.jpg" alt="Trending 5">
+        <div class="overlay">
+          <button>Watch Now</button>
+          <button>Like</button>
+          <button>Save</button>
+        </div>
+      </div>
+    </div>
+    <button class="arrow right">&#8250;</button>
+  </div>
+</div>
+<div class="languages-section">
+  <h2>Popular Languages</h2>
+  <div class="languages-grid">
+    <div class="language-card">
+      <img src="images/ranbir.jpg" alt="Hindi">
+      <div class="language-text">
+        <span class="local">हिंदी</span>
+        <span class="english">Hindi</span>
+      </div>
+    </div>
+
+    <div class="language-card">
+      <img src="images/kamal.jpg" alt="Tamil">
+      <div class="language-text">
+        <span class="local">தமிழ்</span>
+        <span class="english">Tamil</span>
+      </div>
+    </div>
+<div class="language-card">
+      <img src="images/allu.jpg" alt="Telugu">
+      <div class="language-text">
+        <span class="local">తెలుగు</span>
+        <span class="english">Telugu</span>
+      </div>
+    </div>
+    <div class="language-card">
+      <img src="images/tom.jpg" alt="English">
+      <div class="language-text">
+        <span class="local">ENGLISH</span>
+        <span class="english"></span>
+      </div>
+    </div>
+<div class="language-card">
+      <img src="images/puneet.jpg" alt="Kanada">
+      <div class="language-text">
+        <span class="local">ಕನ್ನಡ</span>
+        <span class="english">Kanada</span>
+      </div>
+    </div>
+<div class="language-card">
+      <img src="images/mamooty.jpg" alt="Malayalam">
+      <div class="language-text">
+        <span class="local">മലയാളം</span>
+        <span class="english">Malayalam</span>
+      </div>
+    </div>
+
+    <!-- add more languages similarly -->
+  </div>
+</div>
+<div class="studios-section">
+  <h2>STUDIOS</h2>
+  <div class="carousel-container">
+    <button class="arrow left">&#8249;</button>
+    <div class="carousel">
+     <div class="studios-card">
+      <video autoplay muted loop>
+        <source src="videos/disney.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="studios-card">
+      <video autoplay muted loop>
+        <source src="videos/marvel.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="studios-card">
+      <video autoplay muted loop>
+        <source src="videos/yrf.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+<div class="studios-card">
+      <video autoplay muted loop>
+        <source src="videos/espn.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="studios-card">
+      <video autoplay muted loop>
+        <source src="videos/jio.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="studios-card">
+      <video autoplay muted loop>
+        <source src="videos/pixar.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="studios-card">
+      <video autoplay muted loop>
+        <source src="videos/star-war.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="studios-card">
+      <video autoplay muted loop>
+        <source src="videos/geographic.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+  <button class="arrow right">&#8250;</button>
+  </div>
+</div>
+ <!-- Footer -->
+  <div class="footer">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+      <div>
+        <h2>Company</h2><br>
+        <a href="#">About Us</a><br><br>
+        <a href="#">Careers</a>
+      </div>
+      <div>
+        <h2>View Website in</h2><br>
+        <a href="#">✔️ ENGLISH</a>
+      </div>
+      <div>
+        <h2>Need Help?</h2><br>
+        <a href="#">Help Center</a><br><br>
+        <a href="#">Share Feedback</a>
+      </div>
+      <div>
+        <h2>Connect with Us</h2>
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>&nbsp;
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>&nbsp;
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>&nbsp;
+        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <hr style="margin: 1rem 0; border-color: #333;">
+    <p>© 2025 Disney+ Jio Star Mockup. Created for educational purposes.</p>
+    <p>
+      <a href="#">Terms of use</a>&nbsp;&nbsp;&nbsp;
+      <a href="#">Privacy Policy</a>&nbsp;&nbsp;&nbsp;
+      <a href="#">FAQ</a>
+    </p>
+  </div>
+  <script>
+document.querySelectorAll('.carousel-container').forEach(container => {
+  const carousel = container.querySelector('.carousel') || container.querySelector('.trailer-track');
+  const leftArrow = container.querySelector('.arrow.left');
+  const rightArrow = container.querySelector('.arrow.right');
+
+  let scrollInterval;
+  let speed = 0;
+  const maxSpeed = 20; // max pixels per frame
+  const acceleration = 0.5; // how fast speed increases
+
+  function startScroll(direction) {
+    stopScroll();
+    speed = 0;
+
+    scrollInterval = setInterval(() => {
+      if (speed < maxSpeed) speed += acceleration;
+
+      if (direction === 'right') {
+        if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
+          carousel.scrollLeft = 0; // loop
+        } else {
+          carousel.scrollLeft += speed;
+        }
+      } else {
+        if (carousel.scrollLeft <= 0) {
+          carousel.scrollLeft = carousel.scrollWidth; // loop
+        } else {
+          carousel.scrollLeft -= speed;
+        }
+      }
+    }, 20);
+  }
+
+  function stopScroll() {
+    clearInterval(scrollInterval);
+  }
+
+  [leftArrow, rightArrow].forEach(arrow => {
+    const direction = arrow.classList.contains('right') ? 'right' : 'left';
+
+    // ✅ Hover scroll (instead of just click)
+    arrow.addEventListener('mouseenter', () => {
+      startScroll(direction);
+      clearInterval(autoScroll); // pause auto-scroll
+    });
+
+    arrow.addEventListener('mouseleave', () => {
+      stopScroll();
+      resetAutoScroll(); // resume auto-scroll
+    });
+  });
+
+  // Auto-scroll every 5 sec
+  let autoScroll = setInterval(autoSlide, 5000);
+  function autoSlide() {
+    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
+      carousel.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      carousel.scrollBy({ left: 320, behavior: 'smooth' });
+    }
+  }
+
+  function resetAutoScroll() {
+    clearInterval(autoScroll);
+    autoScroll = setInterval(autoSlide, 5000);
+  }
+});
+  let currentBanner = 0;
+  const banners = document.querySelectorAll(".banner");
+  const totalBanners = banners.length;
+
+  function showBanner(index) {
+    banners.forEach((banner, i) => {
+      banner.classList.remove("active");
+      if (i === index) banner.classList.add("active");
+    });
+  }
+
+  setInterval(() => {
+    currentBanner = (currentBanner + 1) % totalBanners;
+    showBanner(currentBanner);
+  }, 4000); // 4 seconds
+</script>
+
+</body>
+</html>
